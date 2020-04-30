@@ -11,6 +11,7 @@ export default class Albums extends Component {
                         key={album.id}
                         title={album.title}
                         user={user.name}
+                        id={album.id}
                     />
                     :
                     ''
