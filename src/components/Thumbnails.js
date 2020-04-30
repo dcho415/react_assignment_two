@@ -4,7 +4,9 @@ export default class Thumbnails extends Component {
     render() {
         return (
             <div style={boxStyle}>
-                <img src={this.props.data.thumbnailUrl}/>                
+                <a href={this.props.data.url}><img src={this.props.data.thumbnailUrl} alt="error" /></a>
+                <br/>      
+                <h4 style={{ fontWeight: 'normal' }}>{this.props.data.title}</h4> 
             </div>
         )
     }
@@ -16,5 +18,6 @@ const boxStyle = {
     margin: '1%', 
     width: '31.33%', 
     float: 'left',
-    wordWrap: 'break-word'
+    wordWrap: 'break-word',
+    minHeight: '220px'
 }
