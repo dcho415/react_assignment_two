@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 export default class Thumbnails extends Component {
     render() {
         return (
-            <div style={boxStyle}>
-                <a href={this.props.data.url}><img src={this.props.data.thumbnailUrl} alt="error" /></a>
+            <div style={boxStyle} data-test='ThumbnailsComponent'>
+                <a href={this.props.data.url}><img data-test='thumbnail' src={this.props.data.thumbnailUrl} alt="error" /></a>
                 <br/>      
-                <h4 style={{ fontWeight: 'normal' }}>{this.props.data.title}</h4> 
+                <h4 data-test='photoTitle' style={{ fontWeight: 'normal' }}>{this.props.data.title}</h4> 
             </div>
         )
     }

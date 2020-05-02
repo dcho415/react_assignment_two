@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Header() {
     return (
-        <header style={headerStyle}>
+        <header style={headerStyle} data-test="headerComponent">
             <h1>Photo Albums</h1>
             <Link style={linkStyle} to="/">Home</Link>
         </header>

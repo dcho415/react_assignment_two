@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 export default class Album extends Component {
     render() {
         return (
-            <div style={divStyle} >
-                <h3><Link to={'/photos/' + this.props.id}>{this.props.title}</Link></h3>
+            <div style={divStyle} data-test='AlbumComponent'>
+                <h3 data-test='albumTitle'><Link to={'/photos/' + this.props.id}>{this.props.title}</Link></h3>
                 {this.props.user}
             </div>
         )
