@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Thumbnails from './Thumbnails';
+import {connect } from 'react-redux';
+import displayPhotos from '../actions/DisplayPhotos';
 
-export default class Photos extends Component {
+export class Photos extends Component {
     constructor(props) {
         super(props);
     
@@ -16,17 +18,18 @@ export default class Photos extends Component {
         this.setState({ albumId: this.props.match.params.albumId }, () => {
             fetch('http://jsonplaceholder.typicode.com/albums/' + this.state.albumId)
                 .then(response => response.json())
-                .then(json => this.setState({ albumName: json.title }, () => console.log(this.state.albumName)))
+                .then(json => this.setState({ albumName: json.title }))
         });
 
         this.setState({ isLoading: true });
         fetch('http://jsonplaceholder.typicode.com/albums/' + this.props.match.params.albumId + '/photos')
         .then(response => response.json())
-        .then(json => 
+        .then(json => {
             this.setState({
-                photos: json,
                 isLoading: false
             })
+            this.props.displayPhotos(json)
+        }   
         )
         .catch(error => 
             this.setState({
@@ -47,8 +50,8 @@ export default class Photos extends Component {
         return (
             <div style={{padding: '10px'}}>
                 <h2 style={{ fontWeight: 'normal' }}> Album: {this.state.albumName}</h2>
-                {this.state.photos ?
-                    this.state.photos.map(photo => {
+                {this.props.photos ?
+                    this.props.photos.map(photo => {
                     return <Thumbnails 
                                 key={photo.id}
                                 data={photo}
@@ -61,3 +64,20 @@ export default class Photos extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        photos: state.photos
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        displayPhotos: (list) => {
+            dispatch(displayPhotos(list))
+        
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Photos);

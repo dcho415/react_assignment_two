@@ -5,4 +5,4 @@ export const displayPhotos = (photos) => {
     }
   }
 
-  export default displayAlbums
+  export default displayPhotos
